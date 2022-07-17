@@ -4,6 +4,30 @@
 #include <sstream>
 using namespace std;
 
+int main(){
+    Stack* stack = new Stack();
+    int N = 0;
+    cin >> N;
+    for(int i = 0; i <= N; i++){
+        string command;
+        getline(cin,command);
+        if(startsWith(command ,"push")){
+            vector<string> number = split(command);
+            int pushNum = stoi(number[1]);
+            stack->push(pushNum); 
+        }else if (startsWith(command ,"pop")){
+            cout << stack->pop() << endl;
+        }else if (startsWith(command ,"size")){
+            cout << stack->size << endl;
+        }else if (startsWith(command ,"empty")){
+            cout << stack->empty() << endl;
+        }else if (startsWith(command ,"top")){
+            cout << stack->top() << endl;
+        }
+    }
+    return 0;
+}
+
 class Node{
     public:
         Node();
@@ -97,7 +121,7 @@ int Stack::top(){
 }
 
 
-vector<string> split(string str, char Delimiter){
+vector<string> split(string str){
     istringstream iss;
     iss.str(str);
     string buffer;
@@ -113,28 +137,4 @@ vector<string> split(string str, char Delimiter){
 
 bool startsWith(const std::string &str, const std::string &prefix) {
     return str.size() >= prefix.size() && str.compare(0, prefix.size(), prefix) == 0;
-}
-
-int main(){
-    Stack* stack = new Stack();
-    int N = 0;
-    cin >> N;
-    for(int i = 0; i <= N; i++){
-        string command;
-        getline(cin,command);
-        if(startsWith(command ,"push")){
-            vector<string> number = split(command,' ');
-            int pushNum = stoi(number[1]);
-            stack->push(pushNum); 
-        }else if (startsWith(command ,"pop")){
-            cout << stack->pop() << endl;
-        }else if (startsWith(command ,"size")){
-            cout << stack->size << endl;
-        }else if (startsWith(command ,"empty")){
-            cout << stack->empty() << endl;
-        }else if (startsWith(command ,"top")){
-            cout << stack->top() << endl;
-        }
-    }
-    return 0;
 }
